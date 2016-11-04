@@ -45,14 +45,14 @@ static  NSString * KCTMSMergeServiceURL;
  */
 -(void)postWithSingleRequestModel:(JSONModel*)requestValue
                 responseClassName:(NSString*)responseClass
-                          success:(KCTMSSuccessBlock)success
-                             fail:(KCTMSErrorBlock)error{
+                          success:(KCTMSSuccessBlock __nullable)success
+                             fail:(KCTMSErrorBlock __nullable)error{
     [KCTMSFactory postSingleWithURL:KCTMSSingleServiceURL request:requestValue responseClass:responseClass success:success fail:error];
 }
 
 -(void)postWithRequestModel:(JSONModel*)requestValue
-                    success:(KCTMSSuccessBlock)success
-                       fail:(KCTMSErrorBlock)error{
+                    success:(KCTMSSuccessBlock __nullable)success
+                       fail:(KCTMSErrorBlock __nullable)error{
     
     [KCTMSFactory postWithURL:KCTMSSingleServiceURL
                         value:requestValue
@@ -85,8 +85,8 @@ static  NSString * KCTMSMergeServiceURL;
  * @error   失败结果
  */
 -(void)postNoRequstWithTmsKey:(NSString*)tmsKey
-                      success:(KCTMSSuccessBlock )success
-                         fail:(KCTMSErrorBlock )error{
+                      success:(KCTMSSuccessBlock __nullable)success
+                         fail:(KCTMSErrorBlock __nullable)error{
     
     [KCTMSFactory postNoRequstWithURL:KCTMSServiceURL tmsKey:tmsKey success:^(KCTMSRpcResponse *responseObject) {
         //1、 可以处理异常公共的 异常处理
@@ -136,8 +136,8 @@ static  NSString * KCTMSMergeServiceURL;
  */
 
 -(void)postMulitWithParams:(NSArray*)params
-                   success:(KCTMSSuccessBlock)success
-                      fail:(KCTMSErrorBlock)error{
+                   success:(KCTMSSuccessBlock __nullable)success
+                      fail:(KCTMSErrorBlock __nullable)error{
     [KCTMSFactory   postMulitWithURL:KCTMSMergeServiceURL
                               params:params
                              success:^(KCTMSRpcResponse *responseObject) {

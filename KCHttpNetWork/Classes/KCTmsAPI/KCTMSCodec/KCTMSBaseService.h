@@ -12,7 +12,7 @@
 @interface KCTMSBaseService : NSObject
 
 ///设置token
-+(void)setUserToken:(NSString*)token;
++(void)setUserToken:(NSString* __nullable)token;
 
 
 /*
@@ -21,19 +21,19 @@
  * @success         成功回调
  * @fail            失败回调
  */
--(void)postWithSingleRequestModel:(JSONModel*)requestValue
-          responseClassName:(NSString*)responseClass
-                    success:(KCTMSSuccessBlock)success
-                       fail:(KCTMSErrorBlock)error;
+-(void)postWithSingleRequestModel:(JSONModel*__nonnull)requestValue
+          responseClassName:(NSString*__nonnull)responseClass
+                    success:(KCTMSSuccessBlock __nullable)success
+                       fail:(KCTMSErrorBlock __nullable)error;
 
 /*
  * @requestValue  上行参数的对象
  * @success         成功回调
  * @fail            失败回调
  */
--(void)postWithRequestModel:(JSONModel*)requestValue
-              success:(KCTMSSuccessBlock)success
-                 fail:(KCTMSErrorBlock)error;
+-(void)postWithRequestModel:(JSONModel* __nonnull)requestValue
+              success:(KCTMSSuccessBlock __nullable)success
+                 fail:(KCTMSErrorBlock __nullable)error;
 
 /*
  * @url             请求的URL 路径
@@ -43,9 +43,9 @@
  * @fail            失败回调
  */
 
--(void)postMulitWithParams:(NSArray*)params
-                success:(KCTMSSuccessBlock)success
-                   fail:(KCTMSErrorBlock)error;
+-(void)postMulitWithParams:(NSArray* __nonnull)params
+                success:(KCTMSSuccessBlock __nullable)success
+                   fail:(KCTMSErrorBlock __nullable)error;
 
 /*
  *  无请求参数，直传人key 值; 只反回一个结果
@@ -54,9 +54,9 @@
  * @success 成功结果
  * @error   失败结果
  */
--(void)postNoRequstWithTmsKey:(NSString*)tmsKey
-                   success:(KCTMSSuccessBlock )success
-                      fail:(KCTMSErrorBlock )error;
+-(void)postNoRequstWithTmsKey:(NSString* __nonnull)tmsKey
+                   success:(KCTMSSuccessBlock  __nullable)success
+                      fail:(KCTMSErrorBlock __nullable)error;
 
 /**
  *  单个字典对象数据上行请求数据
