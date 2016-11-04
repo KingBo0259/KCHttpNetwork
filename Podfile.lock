@@ -1,0 +1,37 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - JSONModel (1.2.0)
+  - KCHttpNetwork (0.0.3):
+    - AFNetworking (~> 2.6.0)
+    - JSONModel (~> 1.2.0)
+
+DEPENDENCIES:
+  - JSONModel (~> 1.2.0)
+  - KCHttpNetwork (~> 0.0.3)
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
+  KCHttpNetwork: c8ae48ee91e77d2d6fcc13336f0390d16ef230e2
+
+COCOAPODS: 0.39.0
