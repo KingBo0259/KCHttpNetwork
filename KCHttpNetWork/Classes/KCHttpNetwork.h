@@ -12,6 +12,7 @@
 #import "KCHttpEnum.h"
 #import "KCTMSFactoryHeader.h"
 #import "KCTMSFactory.h"
+#improt "KCTMSFactory+NSingle.h"
 #import "KCTMSArchive.h"
 #import "KCTMSBaseService.h"
 #import "KCTMSRpcResponse.h"

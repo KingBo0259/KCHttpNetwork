@@ -10,7 +10,7 @@
 
 @protocol KCTMSDecodeProtocol <NSObject>
 
-@required
+@optional
 ///将服务器返回数据，解析到本地对象
 -(id)decodeToNativeFromServiceResponse:(id)servicereResponse;
 

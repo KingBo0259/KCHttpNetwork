@@ -8,13 +8,9 @@
 
 #import "KCTMSFactory.h"
 //#import <JSONModel/JSONHTTPClient.h>
-#import "AFNetworking.h"
-#import "AFURLRequestSerialization.h"
 #import "KCHttpEnum.h"
 //#import "NSString+SBJSON.h"
 
-static id<KCTMSEncodeProtocol> _encode;//编码规则实例化
-static id<KCTMSDecodeProtocol> _decode;//解码实体类
 
 @implementation KCTMSFactory
 
