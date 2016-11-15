@@ -17,10 +17,6 @@
 #import "AFURLRequestSerialization.h"
 
 
-static id<KCTMSEncodeProtocol> _encode;//编码规则实例化
-static id<KCTMSDecodeProtocol> _decode;//解码实体类
-
-
 typedef void(^KCTMSSuccessBlock)(KCTMSRpcResponse *responseObject);
 
 typedef void(^KCTMSErrorBlock)(NSError*error);
@@ -30,6 +26,10 @@ typedef void(^KTMSLogicCompletionBlock)(NSNumber * status,NSString * message,NSA
 
 
 @interface KCTMSFactory : NSObject
+
++(id<KCTMSEncodeProtocol>)getEncoder;
+
++(id<KCTMSDecodeProtocol>)getDecoder;
 
 /*
  * 设置编码器 和解码器

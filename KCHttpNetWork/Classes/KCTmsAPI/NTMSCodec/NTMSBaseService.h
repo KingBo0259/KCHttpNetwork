@@ -25,7 +25,7 @@
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithValue:(JSONModel*)requestValue
+-(void)postNTMSWithValue:(JSONModel*)requestValue
                success:(KCTMSSuccessBlock )success
                   fail:(KCTMSErrorBlock )error;
 
@@ -40,7 +40,7 @@
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithKey:(NSString*)key
+-(void)postNTMSWithKey:(NSString*)key
           requestValue:(NSDictionary*)requestValue
          responseClass:(NSString*)responseClass
                success:(KCTMSSuccessBlock )success
@@ -53,7 +53,7 @@
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithKey:(NSString*)key
+-(void)postNTMSWithKey:(NSString*)key
          responseClass:(NSString*)responseClass
                success:(KCTMSSuccessBlock )success
                   fail:(KCTMSErrorBlock )error;
@@ -68,7 +68,7 @@
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithValue:(id)value
+-(void)postNTMSWithValue:(id)value
           reponseClass:(NSString*)responseClass
                success:(KCTMSSuccessBlock )success
                   fail:(KCTMSErrorBlock )error;

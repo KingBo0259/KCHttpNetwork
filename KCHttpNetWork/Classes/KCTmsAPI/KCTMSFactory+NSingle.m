@@ -92,7 +92,7 @@
                   fail:(KCTMSErrorBlock )error{
 
     //1、将请求参数 封装成tms指定的json组装格数
-    NSString *bodyStr=[_encode encodeFromArray:@[value]];//编码数据
+    NSString *bodyStr=[[self getEncoder] encodeFromArray:@[value]];//编码数据
     NSLog(@"bodyStr = %@ ",bodyStr);
     
     NSURL *url = [NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -118,7 +118,7 @@
             return ;
         }
         
-        id  tmsResponse= [_decode deccodeToSingleNativeFromServiceResponse:responseObject withResponseClass:responseClass];
+        id  tmsResponse= [[self getDecoder] deccodeToSingleNativeFromServiceResponse:responseObject withResponseClass:responseClass];
         if (success) {
             success(tmsResponse);
         }

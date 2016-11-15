@@ -12,10 +12,14 @@
 #import "KCHttpEnum.h"
 #import "KCTMSFactoryHeader.h"
 #import "KCTMSFactory.h"
-#improt "KCTMSFactory+NSingle.h"
 #import "KCTMSArchive.h"
 #import "KCTMSBaseService.h"
 #import "KCTMSRpcResponse.h"
 #import "KCTMSUnarchive.h"
 
+/*小霸王网络接口调用*/
+#import "NKTMSArchive.h"
+#import "NTMSBaseService.h"
+#import "NTMSRequestProtocol.h"
+#improt "KCTMSFactory+NSingle.h"
 #endif /* KCHttpNetwork_h */

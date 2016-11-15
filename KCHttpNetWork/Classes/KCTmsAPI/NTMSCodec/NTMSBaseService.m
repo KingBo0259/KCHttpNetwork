@@ -30,7 +30,7 @@ static  NSString *NTMSService=@"http://192.168.6.109:8091/ktms/service/call";
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithValue:(JSONModel*)requestValue
+-(void)postNTMSWithValue:(JSONModel*)requestValue
                success:(KCTMSSuccessBlock )success
                   fail:(KCTMSErrorBlock )error{
     [KCTMSFactory postNTMSWithURL:NTMSService value:requestValue success:success fail:error];
@@ -49,7 +49,7 @@ static  NSString *NTMSService=@"http://192.168.6.109:8091/ktms/service/call";
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithKey:(NSString*)key
+-(void)postNTMSWithKey:(NSString*)key
           requestValue:(NSDictionary*)requestValue
          responseClass:(NSString*)responseClass
                success:(KCTMSSuccessBlock )success
@@ -67,7 +67,7 @@ static  NSString *NTMSService=@"http://192.168.6.109:8091/ktms/service/call";
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithKey:(NSString*)key
+-(void)postNTMSWithKey:(NSString*)key
          responseClass:(NSString*)responseClass
                success:(KCTMSSuccessBlock )success
                   fail:(KCTMSErrorBlock )error{
@@ -86,7 +86,7 @@ static  NSString *NTMSService=@"http://192.168.6.109:8091/ktms/service/call";
  @param success 成功
  @param error 失败
  */
-+(void)postNTMSWithValue:(id)value
+-(void)postNTMSWithValue:(id)value
           reponseClass:(NSString*)responseClass
                success:(KCTMSSuccessBlock )success
                   fail:(KCTMSErrorBlock )error{

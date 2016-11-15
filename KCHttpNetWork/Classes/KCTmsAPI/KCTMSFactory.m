@@ -11,6 +11,10 @@
 #import "KCHttpEnum.h"
 //#import "NSString+SBJSON.h"
 
+static id<KCTMSEncodeProtocol> _encode;//编码规则实例化
+static id<KCTMSDecodeProtocol> _decode;//解码实体类
+
+
 
 @implementation KCTMSFactory
 
@@ -20,8 +24,18 @@
     _encode=encode;
     _decode=decode;
 
-
 }
+
++(id<KCTMSEncodeProtocol>)getEncoder{
+
+    return _encode;
+}
+
++(id<KCTMSDecodeProtocol>)getDecoder{
+
+    return _decode;
+}
+
 
 #pragma mark -- Post
 
