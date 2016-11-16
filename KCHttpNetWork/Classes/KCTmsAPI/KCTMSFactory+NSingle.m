@@ -102,7 +102,7 @@
     request.HTTPBody=[bodyStr dataUsingEncoding:NSUTF8StringEncoding];
     
     if ([KCTMSFactoryHeader getToken] ) {
-        [request setValue:[KCTMSFactoryHeader getToken] forHTTPHeaderField:@"token"];
+        [request setValue:[KCTMSFactoryHeader getToken] forHTTPHeaderField:@"tkey"];
     }
     
     //    [request setValue:@"backend-service-factory" forHTTPHeaderField:@"from-source"];//不需要登录设置

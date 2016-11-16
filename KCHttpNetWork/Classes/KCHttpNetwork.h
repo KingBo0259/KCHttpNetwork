@@ -21,5 +21,5 @@
 #import "NKTMSArchive.h"
 #import "NTMSBaseService.h"
 #import "NTMSRequestProtocol.h"
-#improt "KCTMSFactory+NSingle.h"
+#import "KCTMSFactory+NSingle.h"
 #endif /* KCHttpNetwork_h */
