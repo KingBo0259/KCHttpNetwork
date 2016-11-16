@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KCHttpNetwork'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = '快货运网络层封装库.'
 
 # This description is used to generate tags and improve search results.
