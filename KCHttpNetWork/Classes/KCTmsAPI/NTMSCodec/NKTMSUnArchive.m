@@ -35,7 +35,7 @@
     [tmsResponse setStatus:status];
     [tmsResponse setMessage:message];
     //获取json 对象结构数据
-    NSDictionary *body=dict[@"data"];
+    id body=dict[@"data"];
     
     //不等于200说明错误  则直接反回
     if(status!=200||!body)return tmsResponse;
@@ -43,37 +43,35 @@
     if (!responseClass||responseClass.length==0) {
         //若不需要解码 则直接返回
         [tmsResponse setBody:body];
-    }else if ([body isKindOfClass:[NSDictionary class]]) {//字典解析
+    }else if ([body isKindOfClass:[NSDictionary class]]) {//字典直接解析成对象
         //上下文传入对象
         id class= NSClassFromString(responseClass);
-        //最外层TMSKey 值 如:{}
-        [body enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            NSError *error;
+        NSError *error;
+        id responseObject=[[class alloc] initWithDictionary:body error:&error];
+        
+        [tmsResponse setBody:error?error:responseObject];
+       
+    }else if([body isKindOfClass:[NSArray class]])//表示数组解析
+    {
+    
+        NSArray *tempArray=(NSArray*)body;
+       __block NSMutableArray *list=[[NSMutableArray alloc]initWithCapacity:tempArray.count];
+        id class= NSClassFromString(responseClass);
+
+        [tempArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if ([obj isKindOfClass:[NSArray class]]) {
-                // 格式如:TMSReconciliationAPI.getStatementsForDatePeriod={[name:""],[name:"'],[name:""]}
-                //1、数组解析
-                __block NSMutableArray *arrayObj=[NSMutableArray new];
-                
-                [obj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    NSError *objError;
-                    id entity=[[class alloc] initWithDictionary:obj error:&objError];
-                    if (entity) {
-                        [arrayObj addObject:entity];
-                    }
-                }];
-                [tmsResponse setBody:arrayObj];
-                
-            }else{
-                
-                //格式如： TMSReconciliationAPI.getStatementsForDatePeriod={"countKey": "", "startTime": "", "operator": "", "endTime": "", "page": "", "size": ""}
-                //2、单个对象解析
-                id responseObject=[[class alloc] initWithDictionary:obj error:&error];
-                [tmsResponse setBody:responseObject];
+            NSError *error;
+            id responseObject=[[class alloc] initWithDictionary:obj error:&error];
+            
+            if (!error) {
+                [list addObject:responseObject];
             }
         }];
-    }else {
+        
+        [tmsResponse setBody:list];
+    }
+    else
+    {
         [tmsResponse setBody:body];
         
     }
