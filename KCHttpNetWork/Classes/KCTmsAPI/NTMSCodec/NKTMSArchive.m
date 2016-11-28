@@ -53,11 +53,16 @@
             //入参形式入： {tmsKey:{json}}
             tmsKey= [[((NSDictionary*)obj) allKeys] firstObject];
             
-            NSDictionary *requestValue=[[((NSDictionary*)obj) allValues] firstObject];
-            NSError *parseError = nil;
-            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestValue options:NSJSONWritingPrettyPrinted error:&parseError];
-            //json Value
-            tmsValue = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            id requestValue=[[((NSDictionary*)obj) allValues] firstObject];
+            if ([requestValue  isKindOfClass:[NSDictionary class]]|| [requestValue isKindOfClass:[NSArray class]]) {
+                NSError *parseError = nil;
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestValue options:NSJSONWritingPrettyPrinted error:&parseError];
+                //json Value
+                tmsValue = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                
+            }else{
+                tmsValue=requestValue;
+            }
             
             
             
