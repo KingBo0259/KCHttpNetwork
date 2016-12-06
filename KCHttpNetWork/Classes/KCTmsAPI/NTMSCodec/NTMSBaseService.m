@@ -10,7 +10,8 @@
 #import "NKTMSArchive.h"
 #import "NKTMSUnArchive.h"
 
-static  NSString *NTMSService=@"http://192.168.6.109:8091/ktms/service/call";
+static  NSString *NTMSService=@"http://192.168.6.81:8091/ktms/service/call";
+//static  NSString *NTMSService=@"http://192.168.6.109:8091/ktms/service/call";
 
 @implementation NTMSBaseService
 

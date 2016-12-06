@@ -16,6 +16,7 @@
 #import "KCTMSBaseService.h"
 #import "KCTMSRpcResponse.h"
 #import "KCTMSUnarchive.h"
+#import "KCHTTPSessionManager.h"
 
 /*小霸王网络接口调用*/
 #import "NKTMSArchive.h"

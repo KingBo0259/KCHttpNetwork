@@ -9,6 +9,7 @@
 #import "KCTMSFactory.h"
 //#import <JSONModel/JSONHTTPClient.h>
 #import "KCHttpEnum.h"
+#import "KCHTTPSessionManager.h"
 //#import "NSString+SBJSON.h"
 
 static id<KCTMSEncodeProtocol> _encode;//编码规则实例化
@@ -69,8 +70,11 @@ static id<KCTMSDecodeProtocol> _decode;//解码实体类
     
 //    [request setValue:@"backend-service-factory" forHTTPHeaderField:@"from-source"];//不需要登录设置
     
-    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
-    
+//    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+
+    //单里解决内存泄漏
+    KCHTTPSessionManager *manager=[KCHTTPSessionManager shareInstance];
+
     NSURLSessionDataTask *task= [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error1) {
         
         if (error1) {
@@ -188,8 +192,9 @@ static id<KCTMSDecodeProtocol> _decode;//解码实体类
 //    [request setValue:@"backend-service-factory" forHTTPHeaderField:@"from-source"];//不需要登录设置
 
     
-    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
-    
+//    AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
+    KCHTTPSessionManager *manager=[KCHTTPSessionManager shareInstance];
+
     NSURLSessionDataTask *task= [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error1) {
         
         if (error1) {
