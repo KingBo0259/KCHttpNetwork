@@ -73,4 +73,29 @@
                success:(KCTMSSuccessBlock )success
                   fail:(KCTMSErrorBlock )error;
 
+
+/**
+ 上传图片
+ @param success 成功
+ @param error 失败
+ */
++(void)postNTMSUploadImageWithURL:(NSString *)url
+                        imageName:(NSString *)imageName
+                         photoImg:(UIImage *)photoImg
+                     reponseClass:(NSString*)responseClass
+                          success:(KCTMSSuccessBlock )success
+                             fail:(KCTMSErrorBlock )error;
+
+/**
+ 删除图片
+ @param success 成功
+ @param error 失败
+ */
++(void)postNTMSDeleteUploadImageWithURL:(NSString *)url
+                               filePath:(NSString *)filePath
+                           reponseClass:(NSString*)responseClass
+                                success:(KCTMSSuccessBlock )success
+                                   fail:(KCTMSErrorBlock )error;
+
+
 @end

@@ -62,7 +62,6 @@
             
             NSError *error;
             id responseObject=[[class alloc] initWithDictionary:obj error:&error];
-            
             if (!error) {
                 [list addObject:responseObject];
             }
@@ -75,7 +74,7 @@
         [tmsResponse setBody:body];
         
     }
-    
+
     return tmsResponse;
     
 

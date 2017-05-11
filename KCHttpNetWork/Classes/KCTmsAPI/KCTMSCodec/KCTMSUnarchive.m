@@ -66,7 +66,7 @@ static NSMutableDictionary *_tmsResponseMap;//出参映射表
 
 #pragma mark - decode
 
-///解码单个对象
+//解码单个对象
 -(id)deccodeToSingleNativeFromServiceResponse:(id)serviceResponse
                             withResponseClass:(NSString*)responseClass{
     

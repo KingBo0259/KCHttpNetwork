@@ -10,10 +10,21 @@
 #import "NKTMSArchive.h"
 #import "NKTMSUnArchive.h"
 
-static  NSString *NTMSService=@"http://192.168.6.81:8091/ktms/service/call";
+//static  NSString *NTMSService=@"http://192.168.6.81:8091/ktms/service/call";
 //static  NSString *NTMSService=@"http://192.168.6.109:8091/ktms/service/call";
+//static  NSString *NTMSService=@"http://ktms-dev.kuaihuoyun.com/ktms/service/call";
+//static  NSString *NTMSService=@"http://ktms-yf.kuaihuoyun.com/ktms/service/call";
+static  NSString *NTMSService=@"https://ktms.kuaihuoyun.com/ktms/service/call";
+
+
+//static  NSString *NTMSUploadService = @"http://ktms-dev.kuaihuoyun.com/ktms/file";
+//static  NSString *NTMSUploadService=@"http://ktms-yf.kuaihuoyun.com/ktms/file";
+static  NSString *NTMSUploadService=@"https://ktms.kuaihuoyun.com/ktms/file";
 
 @implementation NTMSBaseService
+
+
+
 
 +(void)initialize{
     //组合编码
@@ -67,7 +78,7 @@ static  NSString *NTMSService=@"http://192.168.6.81:8091/ktms/service/call";
  @param responseClass 返回的对象实例
  @param success 成功
  @param error 失败
- */
+ */ 
 -(void)postNTMSWithKey:(NSString*)key
          responseClass:(NSString*)responseClass
                success:(KCTMSSuccessBlock )success
@@ -94,6 +105,35 @@ static  NSString *NTMSService=@"http://192.168.6.81:8091/ktms/service/call";
 
     [KCTMSFactory postNTMSWithURL:NTMSService value:value reponseClass:responseClass success:success fail:error];
 
+}
+
+/*
+ 上传图片
+ @param success 成功
+ @param error 失败
+ */
+-(void)uploadImageWithImageName:(NSString *)imageName
+                 photoImg:(UIImage *)photoImg
+             reponseClass:(NSString*)responseClass
+                  success:(KCTMSSuccessBlock )success
+                     fail:(KCTMSErrorBlock )error
+{
+    NSString *urlStr =[NSString stringWithFormat:@"%@/upload",NTMSUploadService];
+    [KCTMSFactory postNTMSUploadImageWithURL:urlStr imageName:imageName photoImg:photoImg reponseClass:responseClass success:success fail:error];
+}
+
+
+/*
+ 删除上传的图片
+ @param success 成功
+ @param error 失败
+ */
+-(void)deleteUploadImageWithFilePath:(NSString *)filePath
+                        reponseClass:(NSString*)responseClass
+                             success:(KCTMSSuccessBlock )success
+                                fail:(KCTMSErrorBlock )error
+{
+    [KCTMSFactory postNTMSDeleteUploadImageWithURL:NTMSUploadService filePath:filePath reponseClass:responseClass success:success fail:error];
 }
 
 @end

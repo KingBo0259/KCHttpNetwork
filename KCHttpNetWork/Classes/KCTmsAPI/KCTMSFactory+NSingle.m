@@ -121,6 +121,10 @@
         
         id  tmsResponse= [[self getDecoder] deccodeToSingleNativeFromServiceResponse:responseObject withResponseClass:responseClass];
         if (success) {
+            
+            if([responseObject[@"status"] integerValue] == 401){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"kReLogin" object:nil];
+            }
             success(tmsResponse);
         }
         
@@ -132,6 +136,114 @@
     [task resume];
     
 }
+
+
+
+/**
+ 上传图片
+ @param success 成功
+ @param error 失败
+ */
++(void)postNTMSUploadImageWithURL:(NSString *)url
+                        imageName:(NSString *)imageName
+                         photoImg:(UIImage *)photoImg
+                     reponseClass:(NSString*)responseClass
+                          success:(KCTMSSuccessBlock )success
+                             fail:(KCTMSErrorBlock )error
+{
+   
+    NSURL *tempUrl = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:tempUrl];
+    request.timeoutInterval=15.0;//设置请求超时为5秒
+    request.HTTPMethod=@"POST";//设置请求方法
+    
+    if ([KCTMSFactoryHeader getToken] ) {
+        [request setValue:[KCTMSFactoryHeader getToken] forHTTPHeaderField:@"tkey"];
+    }
+    
+    KCHTTPSessionManager *manager=[KCHTTPSessionManager shareInstance];
+    
+    NSURLSessionDataTask *task = [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSData *imageData =UIImageJPEGRepresentation(photoImg,0.7);
+        //上传的参数(上传图片，以文件流的格式)
+        [formData appendPartWithFileData:imageData
+                                    name:@"filename"
+                                fileName:imageName
+                                mimeType:@"image/png"];
+        NSLog(@"------%@",formData);
+        
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        
+        id  tmsResponse= [[self getDecoder] deccodeToSingleNativeFromServiceResponse:responseObject withResponseClass:responseClass];
+        if (success) {
+            success(tmsResponse);
+            if([responseObject[@"status"] integerValue] == 401){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"kReLogin" object:nil];
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error1) {
+        if (error1) {
+            error(error1);
+        }
+
+    }];
+    
+    
+}
+
+
+/**
+ 删除图片
+ @param success 成功
+ @param error 失败
+ */
++(void)postNTMSDeleteUploadImageWithURL:(NSString *)url
+                               filePath:(NSString *)filePath
+                           reponseClass:(NSString*)responseClass
+                                success:(KCTMSSuccessBlock )success
+                                   fail:(KCTMSErrorBlock )error
+{
+    NSString *urlStr =[NSString stringWithFormat:@"%@/delete?filePath=%@",url,filePath];
+    NSURL *tempUrl = [NSURL URLWithString:[urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:tempUrl];
+    request.timeoutInterval=15.0;//设置请求超时为5秒
+    request.HTTPMethod=@"POST";//设置请求方法
+    
+    if ([KCTMSFactoryHeader getToken] ) {
+        [request setValue:[KCTMSFactoryHeader getToken] forHTTPHeaderField:@"tkey"];
+    }
+    
+    KCHTTPSessionManager *manager=[KCHTTPSessionManager shareInstance];
+    NSURLSessionDataTask *task= [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error1) {
+        
+        if (error1) {
+            if (error){
+                error(error1);
+            }
+            return ;
+        }
+        id  tmsResponse= [[self getDecoder] deccodeToSingleNativeFromServiceResponse:responseObject withResponseClass:responseClass];
+        if (success) {
+            success(tmsResponse);
+            
+            if([responseObject[@"status"] integerValue] == 401){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"kReLogin" object:nil];
+            }
+        }
+
+        
+        
+    }];
+    
+    
+    //启动方法
+    [task resume];
+}
+
+
 
 
 @end

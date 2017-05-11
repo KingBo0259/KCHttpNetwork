@@ -13,6 +13,7 @@
 typedef NS_ENUM(NSInteger,KC_HTTP_STATE)
 {
     KC_HTTP_SUCCESS    =200, //hessian 所有返回成功的状态
+    KC_HTTP_URL_OUT =  401, //登录超时
     KC_HTTP_URL_EXPIRE =301  //老接口过期，需要升级软件
 };
 
